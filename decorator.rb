@@ -13,12 +13,12 @@ end
 
 class CapitalizeDecorator < Decorator
   def correct_name
-    super.capitalize()
+    super.capitalize
   end
 end
 
 class TrimmerDecorator < Decorator
   def correct_name
-    super.length <= 10 ? super :  super.slice(0, 10)
+    super.length <= 10 ? super : super.slice(0, 10)
   end
 end
