@@ -32,6 +32,8 @@
 
 ### Key Features <a name="key-features"></a>
 
+- Nameable Class, required decorator classes, Person, Student and Teacher subclasses.
+
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 <!-- GETTING STARTED -->
@@ -79,6 +81,10 @@ To run the project, execute the following commands:
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
+## 🔭 Future Features <a name="future-features"></a>
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
 <!-- CONTRIBUTING -->
 
 ## 🤝 Contributing <a name="contributing"></a>
@@ -110,3 +116,4 @@ If you like this project please give it a ⭐️!
 This project is [MIT](./LICENSE) licensed.
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
+
