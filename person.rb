@@ -12,6 +12,10 @@ class Person < Nameable
   attr_accessor :name, :age, :rentals
   attr_reader :id
 
+  def self.all
+    ObjectSpace.each_object(self).to_a
+  end
+
   def can_use_services?
     is_of_age? || @parent_permission
   end
