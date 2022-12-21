@@ -62,10 +62,7 @@ Install this project with:
 To run the project, execute the following commands:
 
 ```
-  irb
-  irb(main):001:0> require "./person.rb"
-  irb(main):001:0> require "./student.rb"
-  irb(main):001:0> require "./teacher.rb"
+  ruby main.rb
 ```
 
 <!-- AUTHORS -->
