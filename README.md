@@ -32,7 +32,7 @@
 
 ### Key Features <a name="key-features"></a>
 
-- Nameable Class, required decorator classes, Person, Student and Teacher subclasses.
+The user can create persons (which may be students or teachers), books, list all persons or books, create a rental of a book by a person and list all rentals by a given person.
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
