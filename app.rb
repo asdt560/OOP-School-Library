@@ -43,7 +43,7 @@ class App
     title = gets.chomp
     print 'Author: '
     author = gets.chomp
-    Book.new(title, author)
+    Book.new(author, title)
     puts 'Book created successfully'
   end
 
