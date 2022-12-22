@@ -16,13 +16,13 @@ class App
   end
 
   def create_person
-    print 'Do you want to load a student (1) or a teacher (2) data? [Input the require number]: '
+    print 'Do you want to load a student (1) or a teacher (2) data? [Input the required number]: '
     option = gets.chomp
     print 'Name: '
     name = gets.chomp
     print 'Age: '
     age = gets.chomp
-    if option == '1'
+    if option == '2'
       print 'Has parent permission [Y/N]: '
       permission = gets.chomp
       permission = permission.downcase == 'y'
