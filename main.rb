@@ -25,8 +25,8 @@ class Main
   def select
     option = gets.chomp.to_i
     selection = {
-      1 => 'list_books',
-      2 => 'list_people',
+      2 => 'list_books',
+      1 => 'list_people',
       3 => 'create_person',
       4 => 'create_book',
       5 => 'create_rental',
