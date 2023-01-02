@@ -3,8 +3,13 @@ require_relative 'rental'
 require_relative 'person'
 require_relative 'student'
 require_relative 'teacher'
+require_relative 'list'
 
 class Creator
+  def initialize
+    @list = Lister.new
+  end
+
   def create_object(number)
     case number
     when 3
@@ -50,14 +55,14 @@ class Creator
 
   def create_rental
     puts 'Select a book from the following list by number: '
-    Book.all.each_with_index { |book, index| puts "#{index}) Title: #{book.title}, Author: #{book.author}" }
+    book_list = @list.create_list(1)
     book_index = gets.chomp.to_i
     puts 'Select a person from the following list by number (not ID): '
-    Person.all.each_with_index { |person, index| puts "#{index}) Name: #{person.name}, ID:#{person.id}" }
+    person_list = @list.create_list(2)
     person_index = gets.chomp.to_i
     print 'Date: '
     date = gets.chomp
-    Rental.new(date, Book.all[book_index], Person.all[person_index])
+    Rental.new(date, book_list[book_index], person_list[person_index])
     print 'Rental created successfully'
   end
 end

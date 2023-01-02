@@ -25,7 +25,9 @@ class Lister
   end
 
   def list_books
-    @list.each { |book| puts "Title: \"#{book.title}\", Author: #{book.author}" }
+    @list.each_with_index do |book, index| 
+      puts "#{index}) Title: \"#{book.title}\", Author: #{book.author}"
+    end
   end
 
   def list_people
