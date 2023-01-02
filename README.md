@@ -67,7 +67,7 @@ To run the project, execute the following commands:
 
 <!-- AUTHORS -->
 
-## 👥 Author <a name="authors"></a>
+## 👥 Authors <a name="authors"></a>
 
 👤 **Justo Rago**
 
@@ -75,6 +75,11 @@ To run the project, execute the following commands:
 - Twitter: [@twitterhandle](https://twitter.com/JustoRago)
 - LinkedIn: [LinkedIn]( www.linkedin.com/in/justo-rago-0714b5208)
 
+👤 **Shaker AbuDrais**
+
+- GitHub: [@githubhandle](https://github.com/shakerAbuDrais)
+- Twitter: [@twitterhandle](https://twitter.com/shakerabady)
+- LinkedIn: [LinkedIn]( https://www.linkedin.com/in/shaker-abady/)
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
