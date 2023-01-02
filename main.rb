@@ -18,7 +18,7 @@ end
 
 class Main
   def initialize
-    @app = Testapp.new
+    @app = App.new
     @interface = Interface.new
   end
 
