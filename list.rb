@@ -25,7 +25,7 @@ class Lister
   end
 
   def list_books
-    @list.each_with_index do |book, index| 
+    @list.each_with_index do |book, index|
       puts "#{index}) Title: \"#{book.title}\", Author: #{book.author}"
     end
   end
