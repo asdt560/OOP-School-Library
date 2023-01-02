@@ -18,23 +18,15 @@ end
 
 class Main
   def initialize
-    @app = App.new
+    @app = Testapp.new
     @interface = Interface.new
   end
 
   def select
     option = gets.chomp.to_i
-    selection = {
-      1 => 'list_books',
-      2 => 'list_people',
-      3 => 'create_person',
-      4 => 'create_book',
-      5 => 'create_rental',
-      6 => 'list_rentals_person'
-    }
     case option
     when 1..6
-      @app.send(selection[option])
+      @app.select(option)
       run
     when 7
       puts 'Thank you for using this App!'
