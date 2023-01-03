@@ -19,26 +19,22 @@ class Student < Person
   end
 
   def tojson
-    tempHash = {
+    temp_hash = {
       @id => {
-        "age" => @age,
-        "name" => @name,
-        "p_p" => @parent_permission,
-        "id" => @id,
-        "classroom" => @classroom,
-        "rentals" => @rentals
+        'age' => @age,
+        'name' => @name,
+        'p_p' => @parent_permission,
+        'id' => @id,
+        'classroom' => @classroom,
+        'rentals' => @rentals
       }
     }
     if File.zero?('persons.json')
-      File.open("persons.json","w+") do |f|
-        f.write(JSON.pretty_generate([tempHash]))
-      end
+      File.write('persons.json', JSON.pretty_generate([temp_hash]))
     else
-    data_from_json = JSON.parse(File.read("persons.json"))
-    data_from_json = [data_from_json] if data_from_json.class != Array
-      File.open("persons.json","w+") do |f|
-        f.write(JSON.pretty_generate(data_from_json << tempHash))
-      end
+      data_from_json = JSON.parse(File.read('persons.json'))
+      data_from_json = [data_from_json] if data_from_json.class != Array
+      File.write('persons.json', JSON.pretty_generate(data_from_json << temp_hash))
     end
   end
 end

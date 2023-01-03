@@ -13,23 +13,19 @@ class Book
   end
 
   def tojson
-    tempHash = {
+    temp_hash = {
       @title => {
-        "title" => @title,
-        "author" => @author,
-        "rentals" => @rentals
+        'title' => @title,
+        'author' => @author,
+        'rentals' => @rentals
       }
     }
     if File.zero?('books.json')
-      File.open("books.json","w+") do |f|
-        f.write(JSON.pretty_generate([tempHash]))
-      end
+      File.write('books.json', JSON.pretty_generate([temp_hash]))
     else
-    data_from_json = JSON.parse(File.read("books.json"))
-    data_from_json = [data_from_json] if data_from_json.class != Array
-      File.open("books.json","w+") do |f|
-        f.write(JSON.pretty_generate(data_from_json << tempHash))
-      end
+      data_from_json = JSON.parse(File.read('books.json'))
+      data_from_json = [data_from_json] if data_from_json.class != Array
+      File.write('books.json', JSON.pretty_generate(data_from_json << temp_hash))
     end
   end
 end

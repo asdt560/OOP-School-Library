@@ -12,23 +12,19 @@ class Rental
   attr_accessor :date, :book, :person
 
   def tojson
-    tempHash = {
+    temp_hash = {
       @date => {
-        "date" => @date,
-        "book" => @book,
-        "person" => @person,
+        'date' => @date,
+        'book' => @book,
+        'person' => @person
       }
     }
     if File.zero?('rentals.json')
-      File.open("rentals.json","w+") do |f|
-        f.write(JSON.pretty_generate([tempHash]))
-      end
+      File.write('rentals.json', JSON.pretty_generate([temp_hash]))
     else
-    data_from_json = JSON.parse(File.read("rentals.json"))
-    data_from_json = [data_from_json] if data_from_json.class != Array
-      File.open("rentals.json","w+") do |f|
-        f.write(JSON.pretty_generate(data_from_json << tempHash))
-      end
+      data_from_json = JSON.parse(File.read('rentals.json'))
+      data_from_json = [data_from_json] if data_from_json.class != Array
+      File.write('rentals.json', JSON.pretty_generate(data_from_json << temp_hash))
     end
   end
 end
