@@ -1,4 +1,5 @@
 require_relative 'app'
+require_relative 'data'
 
 class Interface
   @welcome = 'Welcome to School Library App!', ''
@@ -20,6 +21,7 @@ class Main
   def initialize
     @app = App.new
     @interface = Interface.new
+    @data = Data.new
   end
 
   def select
@@ -36,7 +38,13 @@ class Main
     end
   end
 
+  def start
+    @data.load_json
+    run
+  end
+
   def run
+    @data.create_json_file
     @interface.interface
     select
   end
@@ -44,4 +52,4 @@ class Main
   private :select
 end
 
-Main.new.run
+Main.new.start

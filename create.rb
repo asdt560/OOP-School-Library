@@ -34,12 +34,14 @@ class Creator
       permission = permission.downcase == 'y'
       print 'Classroom: '
       classroom = gets.chomp
-      Student.new(age, classroom, name, parent_permission: permission)
+      newstudent = Student.new(age, classroom, name, parent_permission: permission)
+      newstudent.tojson
       puts 'Student created successfully'
     else
       print 'Specialization: '
       specialization = gets.chomp
-      Teacher.new(age, name, specialization)
+      newteach = Teacher.new(age, name, specialization)
+      newteach.tojson
       puts 'Teacher created successfully'
     end
   end
@@ -49,7 +51,8 @@ class Creator
     title = gets.chomp
     print 'Author: '
     author = gets.chomp
-    Book.new(title, author)
+    newbook = Book.new(title, author)
+    newbook.tojson
     puts 'Book created successfully'
   end
 
@@ -62,7 +65,8 @@ class Creator
     person_index = gets.chomp.to_i
     print 'Date: '
     date = gets.chomp
-    Rental.new(date, book_list[book_index], person_list[person_index])
+    newrental = Rental.new(date, book_list[book_index], person_list[person_index])
+    newrental.tojson
     print 'Rental created successfully'
   end
 end
