@@ -22,7 +22,7 @@ class Book
     }
     if File.zero?('books.json')
       File.open("books.json","w+") do |f|
-        f.write(JSON.pretty_generate(tempHash))
+        f.write(JSON.pretty_generate([tempHash]))
       end
     else
     data_from_json = JSON.parse(File.read("books.json"))

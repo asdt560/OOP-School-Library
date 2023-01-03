@@ -21,7 +21,7 @@ class Rental
     }
     if File.zero?('rentals.json')
       File.open("rentals.json","w+") do |f|
-        f.write(JSON.pretty_generate(tempHash))
+        f.write(JSON.pretty_generate([tempHash]))
       end
     else
     data_from_json = JSON.parse(File.read("rentals.json"))

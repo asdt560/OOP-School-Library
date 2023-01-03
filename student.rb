@@ -2,8 +2,8 @@ require_relative 'person'
 require_relative 'classroom'
 
 class Student < Person
-  def initialize(age, classroom, name, parent_permission: true, id: Random.rand(1..1000))
-    super(age, name, parent_permission: parent_permission, id: id)
+  def initialize(age, classroom, id = Random.rand(1..1000), parent_permission = true, name)
+    super(age, name, id, parent_permission: parent_permission)
     @classroom = classroom
   end
 
@@ -31,7 +31,7 @@ class Student < Person
     }
     if File.zero?('persons.json')
       File.open("persons.json","w+") do |f|
-        f.write(JSON.pretty_generate(tempHash))
+        f.write(JSON.pretty_generate([tempHash]))
       end
     else
     data_from_json = JSON.parse(File.read("persons.json"))
