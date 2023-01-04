@@ -7,7 +7,7 @@ class Student < Person
     @classroom = classroom
   end
 
-  attr_accessor :classroom
+  attr_accessor :classroom, :parent_permission
 
   def add_classroom(classroom)
     @classroom = classroom

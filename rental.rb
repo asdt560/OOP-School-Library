@@ -12,11 +12,41 @@ class Rental
   attr_accessor :date, :book, :person
 
   def tojson
+    book_hash = {
+      @book.title => {
+        'title' => @book.title,
+        'author' => @book.author,
+        'rentals' => @book.rentals
+      }
+    }
+    person_hash = if @person.classroom
+                    {
+                      @person.id => {
+                        'age' => @person.age,
+                        'name' => @person.name,
+                        'p_p' => @person.parent_permission,
+                        'id' => @person.id,
+                        'classroom' => @person.classroom,
+                        'rentals' => @person.rentals
+                      }
+                    }
+                  else
+                    {
+                      @person.id => {
+                        'age' => @person.age,
+                        'name' => @person.name,
+                        'specialization' => @person.specialization,
+                        'id' => @person.id,
+                        'rentals' => @person.rentals
+                      }
+                    }
+                  end
+
     temp_hash = {
       @date => {
         'date' => @date,
-        'book' => @book,
-        'person' => @person
+        'book' => book_hash,
+        'person' => person_hash
       }
     }
     if File.zero?('rentals.json')

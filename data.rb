@@ -30,9 +30,10 @@ class Data
     people_from_json.each do |person|
       newperson = person.values[0]
       if newperson['classroom']
-        Student.new(newperson['age'], newperson['classroom'], newperson['p_p'], newperson['id'], newperson['name'])
+        Student.new(newperson['age'], newperson['classroom'], newperson['name'], id: newperson['id'],
+                                                                                 parent_permission: newperson['p_p'])
       else
-        Teacher.new(newperson['age'], newperson['name'], newperson['id'], newperson['specialization'])
+        Teacher.new(newperson['age'], newperson['name'], newperson['specialization'], id: newperson['id'])
       end
     end
   end
