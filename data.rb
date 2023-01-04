@@ -17,25 +17,19 @@ module Data
   end
 
   def save_books
-    if File.zero?('books.json')
-      array = []
-    else
-      array = read_json('books.json')
-      list_ID = []
-      array.each do |book|
-        list_ID.push(book['id'])
-      end
-      @booklist.each do |book|
-        unless list_ID.include?(book.id)
-          array.push(
-            {
-              title: book.title,
-              author: book.author,
-              id: book.id
-            }
-          )
-        end
-      end
+    array = read_json('books.json')
+    list_id = []
+    array.each { |book| list_id.push(book['id']) }
+    @booklist.each do |book|
+      next if list_id.include?(book.id)
+
+      array.push(
+        {
+          title: book.title,
+          author: book.author,
+          id: book.id
+        }
+      )
     end
     write_json(array, 'books.json')
   end
@@ -48,38 +42,21 @@ module Data
   end
 
   def save_persons
-    if File.zero?('persons.json')
-      array = []
-    else
-      array = read_json('persons.json')
-      list_ID = []
-      array.each do |person|
-        list_ID.push(person['id'])
-      end
-      @personlist.map do |person|
-        unless list_ID.include?(person.id)
-          if person.instance_of?(Student)
-            array.push(
-              {
-                id: person.id,
-                type: person.class,
-                age: person.age,
-                name: person.name,
-                classroom: person.classroom,
-                parent_permission: person.parent_permission
-              }
-            )
-          else
-            array.push(
-              {
-                id: person.id,
-                type: person.class,
-                age: person.age,
-                name: person.name,
-                specialization: person.specialization
-              }
-            )
-          end
+    array = read_json('persons.json')
+    list_id = []
+    array.each { |person| list_id.push(person['id']) }
+    @personlist.map do |person|
+      unless list_id.include?(person.id)
+        if person.instance_of?(Student)
+          array.push(
+            { id: person.id, type: person.class, age: person.age, name: person.name, classroom: person.classroom,
+              parent_permission: person.parent_permission }
+          )
+        else
+          array.push(
+            { id: person.id, type: person.class, age: person.age,
+              name: person.name, specialization: person.specialization }
+          )
         end
       end
     end
@@ -93,7 +70,9 @@ module Data
         teacher = Teacher.new(person['age'], person['name'], person['specialization'], id: person['id'])
         @personlist.push(teacher)
       else
-        student = Student.new(person['age'], person['classroom'], person['name'], id: person['id'], parent_permission: person['parent_permission'])
+        student = Student.new(person['age'], person['classroom'],
+                              person['name'], id: person['id'],
+                                              parent_permission: person['parent_permission'])
         @personlist.push(student)
       end
     end
@@ -104,21 +83,18 @@ module Data
       array = []
     else
       array = read_json('rentals.json')
-      list_ID = []
+      list_id = []
       array.each do |rental|
-        list_ID.push(rental['id'])
+        list_id.push(rental['id'])
       end
       @rentallist.each do |rental|
-        unless list_ID.include?(rental.id)
-          array.push(
-            {
-              date: rental.date,
-              id: rental.id,
-              book: rental.book.id,
-              person: rental.person.id
-            }
-          )
-        end
+        next if list_id.include?(rental.id)
+
+        array.push(
+          {
+            date: rental.date, id: rental.id, book: rental.book.id, person: rental.person.id
+          }
+        )
       end
     end
     write_json(array, 'rentals.json')
@@ -128,14 +104,8 @@ module Data
     parse_file = read_json('rentals.json')
     parse_file.each do |rental|
       date = rental['date']
-      book1 = 0
-      @booklist.each do |book| 
-        if book.id == rental['book'] then book1 = book end
-      end
-      person1 = 0
-      @personlist.each do |person| 
-        if person.id == rental['person'] then person1 = person end
-      end
+      book1 = @booklist.find { |book| book.id == rental['book'] }
+      person1 = @personlist.find { |person| person.id == rental['person'] }
       @rentallist.push(Rental.new(date, book1, person1, id: rental['id']))
     end
   end
