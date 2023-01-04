@@ -7,23 +7,14 @@ require_relative 'rental'
 class Data
   def create_json_file
     File.open('books.json', 'w+') unless File.exist?('books.json')
-    end
     File.open('persons.json', 'w+') unless File.exist?('persons.json')
-    end
     File.open('rentals.json', 'w+') unless File.exist?('rentals.json')
-    end
   end
 
   def load_json
-    unless File.zero?('books.json')
-      load_books
-    end
-    unless File.zero?('persons.json')
-      load_persons
-    end
-    unless File.zero?('rentals.json')
-      load_rentals
-    end
+    load_books unless File.zero?('books.json')
+    load_persons unless File.zero?('persons.json')
+    load_rentals unless File.zero?('rentals.json')
   end
 
   def load_books
