@@ -24,8 +24,6 @@ class Person < Nameable
     @rentals.push(rental)
   end
 
-  private
-
   def is_of_age?
     @age >= 18
   end

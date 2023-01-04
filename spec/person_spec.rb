@@ -46,6 +46,17 @@ describe Person do
     end
   end
 
+  describe '#is_of_age?' do
+    it 'returns true if age is 18 or more' do
+      expect(person.is_of_age?).to eq(true)
+    end
+
+    it 'returns false if age is below 18' do
+      minor_person = Person.new(17, 'Jane', 456, parent_permission: false)
+      expect(minor_person.is_of_age?).to eq(false)
+    end
+  end
+
   describe '#correct_name' do
     it 'returns the correct name of the person' do
       expect(person.correct_name).to eq('John')
