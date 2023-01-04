@@ -35,7 +35,7 @@ class Creator
       print 'Classroom: '
       classroom = gets.chomp
       newstudent = Student.new(age, classroom, name, parent_permission: permission)
-      newstudent.tojson
+      newstudent.tohash
       puts 'Student created successfully'
     else
       create_teacher(name, age)
@@ -46,7 +46,7 @@ class Creator
     print 'Specialization: '
     specialization = gets.chomp
     newteach = Teacher.new(age, name, specialization)
-    newteach.tojson
+    newteach.tohash
     puts 'Teacher created successfully'
   end
 
@@ -56,7 +56,7 @@ class Creator
     print 'Author: '
     author = gets.chomp
     newbook = Book.new(title, author)
-    newbook.tojson
+    newbook.tohash
     puts 'Book created successfully'
   end
 

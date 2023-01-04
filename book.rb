@@ -12,7 +12,7 @@ class Book
     book.rental = self
   end
 
-  def tojson
+  def tohash
     temp_hash = {
       @title => {
         'title' => @title,
@@ -20,6 +20,10 @@ class Book
         'rentals' => @rentals
       }
     }
+    tojson(temp_hash)
+  end
+
+  def tojson(temp_hash)
     if File.zero?('books.json')
       File.write('books.json', JSON.pretty_generate([temp_hash]))
     else

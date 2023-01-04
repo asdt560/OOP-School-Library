@@ -11,7 +11,7 @@ class Rental
 
   attr_accessor :date, :book, :person
 
-  def tojson
+  def hash_book
     book_hash = {
       @book.title => {
         'title' => @book.title,
@@ -19,29 +19,41 @@ class Rental
         'rentals' => @book.rentals
       }
     }
-    person_hash = if @person.classroom
-                    {
-                      @person.id => {
-                        'age' => @person.age,
-                        'name' => @person.name,
-                        'p_p' => @person.parent_permission,
-                        'id' => @person.id,
-                        'classroom' => @person.classroom,
-                        'rentals' => @person.rentals
-                      }
-                    }
-                  else
-                    {
-                      @person.id => {
-                        'age' => @person.age,
-                        'name' => @person.name,
-                        'specialization' => @person.specialization,
-                        'id' => @person.id,
-                        'rentals' => @person.rentals
-                      }
-                    }
-                  end
+    if @person.classroom
+      hash_student(book_hash)
+    else
+      hash_teacher(book_hash)
+    end
+  end
 
+  def hash_student(book_hash)
+    person_hash = {
+      @person.id => {
+        'age' => @person.age,
+        'name' => @person.name,
+        'p_p' => @person.parent_permission,
+        'id' => @person.id,
+        'classroom' => @person.classroom,
+        'rentals' => @person.rentals
+      }
+    }
+    tojson(book_hash, person_hash)
+  end
+
+  def hash_teacher(book_hash)
+    person_hash = {
+      @person.id => {
+        'age' => @person.age,
+        'name' => @person.name,
+        'specialization' => @person.specialization,
+        'id' => @person.id,
+        'rentals' => @person.rentals
+      }
+    }
+    tojson(book_hash, person_hash)
+  end
+
+  def tojson(book_hash, person_hash)
     temp_hash = {
       @date => {
         'date' => @date,

@@ -18,7 +18,7 @@ class Student < Person
     '¯\(ツ)/¯'
   end
 
-  def tojson
+  def tohash
     temp_hash = {
       @id => {
         'age' => @age,
@@ -29,6 +29,10 @@ class Student < Person
         'rentals' => @rentals
       }
     }
+    tojson(temp_hash)
+  end
+
+  def tojson(temp_hash)
     if File.zero?('persons.json')
       File.write('persons.json', JSON.pretty_generate([temp_hash]))
     else
