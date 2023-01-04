@@ -2,7 +2,7 @@ require_relative 'person'
 require_relative 'classroom'
 
 class Student < Person
-  def initialize(age, classroom, id = Random.rand(1..1000), parent_permission = true, name)
+  def initialize(age, classroom, name, id: Random.rand(1..1000), parent_permission: true)
     super(age, name, id, parent_permission: parent_permission)
     @classroom = classroom
   end

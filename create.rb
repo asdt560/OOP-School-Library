@@ -38,12 +38,16 @@ class Creator
       newstudent.tojson
       puts 'Student created successfully'
     else
-      print 'Specialization: '
-      specialization = gets.chomp
-      newteach = Teacher.new(age, name, specialization)
-      newteach.tojson
-      puts 'Teacher created successfully'
+      create_teacher(name, age)
     end
+  end
+
+  def create_teacher(name, age)
+    print 'Specialization: '
+    specialization = gets.chomp
+    newteach = Teacher.new(age, name, specialization)
+    newteach.tojson
+    puts 'Teacher created successfully'
   end
 
   def create_book
