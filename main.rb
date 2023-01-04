@@ -1,5 +1,4 @@
 require_relative 'app'
-require_relative 'data'
 
 class Interface
   @welcome = 'Welcome to School Library App!', ''
@@ -21,7 +20,6 @@ class Main
   def initialize
     @app = App.new
     @interface = Interface.new
-    @data = Data.new
   end
 
   def select
@@ -31,6 +29,7 @@ class Main
       @app.select(option)
       run
     when 7
+      @app.save_data
       puts 'Thank you for using this App!'
     else
       puts 'Incorrect Input: Option does not exist'
@@ -39,12 +38,11 @@ class Main
   end
 
   def start
-    @data.load_json
+    @app.load_data
     run
   end
 
   def run
-    @data.create_json_file
     @interface.interface
     select
   end
