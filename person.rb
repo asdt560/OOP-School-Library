@@ -1,7 +1,7 @@
 require_relative 'nameable'
 
 class Person < Nameable
-  def initialize(age, name = 'Unknown', parent_permission: true, id: Random.rand(1..1000))
+  def initialize(age, name = 'Unknown', id = Random.rand(1..1000), parent_permission: true)
     super()
     @id = id
     @name = name
@@ -11,10 +11,6 @@ class Person < Nameable
   end
   attr_accessor :name, :age, :rentals
   attr_reader :id
-
-  def self.all
-    ObjectSpace.each_object(self).to_a
-  end
 
   def can_use_services?
     is_of_age? || @parent_permission

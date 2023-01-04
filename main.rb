@@ -24,24 +24,22 @@ class Main
 
   def select
     option = gets.chomp.to_i
-    selection = {
-      1 => 'list_books',
-      2 => 'list_people',
-      3 => 'create_person',
-      4 => 'create_book',
-      5 => 'create_rental',
-      6 => 'list_rentals_person'
-    }
     case option
     when 1..6
-      @app.send(selection[option])
+      @app.select(option)
       run
     when 7
+      @app.save_data
       puts 'Thank you for using this App!'
     else
       puts 'Incorrect Input: Option does not exist'
       run
     end
+  end
+
+  def start
+    @app.load_data
+    run
   end
 
   def run
@@ -52,4 +50,4 @@ class Main
   private :select
 end
 
-Main.new.run
+Main.new.start
