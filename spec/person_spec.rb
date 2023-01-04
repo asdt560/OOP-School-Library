@@ -1,10 +1,13 @@
 require 'rspec'
 require_relative '../person'
+require_relative '../book'
+require_relative '../rental'
 require_relative '../nameable'
 
 describe Person do
   let(:person) { Person.new(21, 'John', 123) }
-  let(:rental) { double('rental') }
+  let (:book) { Book.new('To Kill a Mockingbird', 'Harper Lee') }
+  let(:rental) { Rental.new('01', book, person, id: 123) }
 
   describe '#initialize' do
     it 'creates a new Person object with the given age and name' do
@@ -27,9 +30,34 @@ describe Person do
     end
   end
 
+  describe '#can_use_services?' do
+    it 'returns true if the person is of age' do
+      expect(person.can_use_services?).to eq(true)
+    end
+
+    it 'returns true if the person has parent permission' do
+      minor_person = Person.new(17, 'Jane', 456, parent_permission: true)
+      expect(minor_person.can_use_services?).to eq(true)
+    end
+
+    it 'returns false if the person is not of age and does not have parent permission' do
+      minor_person = Person.new(17, 'Jane', 456, parent_permission: false)
+      expect(minor_person.can_use_services?).to eq(false)
+    end
+  end
+
   describe '#correct_name' do
     it 'returns the correct name of the person' do
       expect(person.correct_name).to eq('John')
     end
   end
+
+  describe '#add_rental' do
+    it 'adds the rental to the person\'s rentals' do
+      puts person.rentals
+      person.add_rental(rental)
+      expect(person.rentals).to include(rental)
+    end
+  end
 end
+

@@ -22,12 +22,11 @@ class Person < Nameable
 
   def add_rental(rental)
     @rentals.push(rental)
-    person.rental = self
   end
 
   private
 
-  def _is_of_age?
+  def is_of_age?
     @age >= 18
   end
 end
