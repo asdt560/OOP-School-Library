@@ -7,14 +7,14 @@ describe Decorator do
   let(:person) { Person.new(21, 'John', 123) }
   subject { Decorator.new(nameable) }
 
-  describe "#initialize" do
-    it "sets the @nameable instance variable" do
+  describe '#initialize' do
+    it 'sets the @nameable instance variable' do
       expect(subject.instance_variable_get(:@nameable)).to eq(nameable)
     end
   end
 
-  describe "#correct_name" do
-    it "calls the correct_name method on the @nameable instance variable" do
+  describe '#correct_name' do
+    it 'calls the correct_name method on the @nameable instance variable' do
       expect(nameable).to receive(:correct_name)
       subject.correct_name
     end

@@ -6,7 +6,7 @@ require_relative '../nameable'
 
 describe Person do
   let(:person) { Person.new(21, 'John', 123) }
-  let (:book) { Book.new('To Kill a Mockingbird', 'Harper Lee') }
+  let(:book) { Book.new('To Kill a Mockingbird', 'Harper Lee') }
   let(:rental) { Rental.new('01', book, person, id: 123) }
 
   describe '#initialize' do
@@ -46,14 +46,14 @@ describe Person do
     end
   end
 
-  describe '#is_of_age?' do
+  describe '#of_age?' do
     it 'returns true if age is 18 or more' do
-      expect(person.is_of_age?).to eq(true)
+      expect(person.of_age?).to eq(true)
     end
 
     it 'returns false if age is below 18' do
       minor_person = Person.new(17, 'Jane', 456, parent_permission: false)
-      expect(minor_person.is_of_age?).to eq(false)
+      expect(minor_person.of_age?).to eq(false)
     end
   end
 
@@ -71,4 +71,3 @@ describe Person do
     end
   end
 end
-
